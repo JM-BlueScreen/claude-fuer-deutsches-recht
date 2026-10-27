@@ -1,0 +1,13 @@
+name: Sync fork
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh repo sync ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
